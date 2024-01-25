@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backend:
+    image: backend:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+    volumes:
+      - log_datas:/logs
+
+  mysql:
+    image: mysql:8.0.32
+    container_name: art-mysql
+    platform: linux/amd64
+    volumes:
+      - db_datas:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=gidung
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_PASSWORD=gidung
+      - TZ= Asia/Seoul
+    ports:
+      - 13306:3306
+
+volumes:
+  db_datas:
