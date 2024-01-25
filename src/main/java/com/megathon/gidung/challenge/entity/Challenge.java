@@ -35,6 +35,9 @@ public class Challenge {
     @Column(name = "end_at", nullable = false)
     private LocalDate endAt;
 
+    @Column(name = "is_visible", nullable = false)
+    private Boolean isVisible;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -51,6 +54,7 @@ public class Challenge {
                 .content(challengeCreateRequest.getContent())
                 .startAt(challengeCreateRequest.getStartAt())
                 .endAt(challengeCreateRequest.getEndAt())
+                .isVisible(challengeCreateRequest.getIsVisible())
                 .createdTime(LocalDateTime.now())
                 .updatedTime(LocalDateTime.now())
                 .build();
@@ -64,6 +68,7 @@ public class Challenge {
         this.title = update.getTitle();
         this.content = update.getContent();
         this.startAt = update.getStartAt();
+        this.isVisible = update.getIsVisible();
         this.endAt = update.getEndAt();
     }
 }

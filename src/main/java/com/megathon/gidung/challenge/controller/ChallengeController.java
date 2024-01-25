@@ -28,9 +28,9 @@ public class ChallengeController {
     }
 
     @GetMapping
-    @Operation(summary = "챌린지 전체 조회")
+    @Operation(summary = "공개된 챌린지들 조회")
     public ResponseEntity getChallenges() {
-        List<ChallengeResponse> response = challengeService.getChallenges();
+        List<ChallengeResponse> response = challengeService.getChallengesByVisible();
         return new ResponseEntity(response, HttpStatus.OK);
     }
 

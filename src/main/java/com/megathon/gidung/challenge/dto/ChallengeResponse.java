@@ -21,7 +21,13 @@ public class ChallengeResponse {
 
     private String endAt;
 
+    private Boolean isVisible;
+
     private MemberResponse member;
+
+    private Long challengeMemberCount;
+
+    private Long challengeMemberGoalCount;
 
     private String createdTime;
 
@@ -35,6 +41,7 @@ public class ChallengeResponse {
         challengeResponse.setContent(challenge.getContent());
         challengeResponse.setStartAt(challenge.getStartAt().toString());
         challengeResponse.setEndAt(challenge.getEndAt().toString());
+        challengeResponse.setIsVisible(challenge.getIsVisible());
         challengeResponse.setMember(MemberResponse.from(challenge.getMember()));
         challengeResponse.setCreatedTime(challenge.getCreatedTime().toString());
         challengeResponse.setUpdatedTime(challenge.getUpdatedTime().toString());
