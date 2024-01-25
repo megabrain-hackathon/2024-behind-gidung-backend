@@ -1,6 +1,6 @@
 package com.megathon.gidung.challenge.entity;
 
-import com.megathon.gidung.challenge.dto.ChallengeCreateRequest;
+import com.megathon.gidung.challenge.dto.ChallengeRequest;
 import com.megathon.gidung.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -45,12 +45,14 @@ public class Challenge {
     @Column(name = "updated_time", nullable = false)
     private LocalDateTime updatedTime;
 
-    public static Challenge toEntity(ChallengeCreateRequest challengeCreateRequest) {
+    public static Challenge toEntity(ChallengeRequest.Create challengeCreateRequest) {
         return Challenge.builder()
                 .title(challengeCreateRequest.getTitle())
                 .content(challengeCreateRequest.getContent())
                 .startAt(challengeCreateRequest.getStartAt())
                 .endAt(challengeCreateRequest.getEndAt())
+                .createdTime(LocalDateTime.now())
+                .updatedTime(LocalDateTime.now())
                 .build();
     }
 
@@ -58,10 +60,10 @@ public class Challenge {
         this.member = member;
     }
 
-    public void update(ChallengeCreateRequest challengeCreateRequest) {
-        this.title = challengeCreateRequest.getTitle();
-        this.content = challengeCreateRequest.getContent();
-        this.startAt = challengeCreateRequest.getStartAt();
-        this.endAt = challengeCreateRequest.getEndAt();
+    public void update(ChallengeRequest.Update update) {
+        this.title = update.getTitle();
+        this.content = update.getContent();
+        this.startAt = update.getStartAt();
+        this.endAt = update.getEndAt();
     }
 }
