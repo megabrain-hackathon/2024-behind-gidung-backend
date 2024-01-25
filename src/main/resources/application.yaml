@@ -1,6 +1,28 @@
+
+logging:
+  level:
+    com.megathon : DEBUG
+
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:13306/gidung?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: gidung
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: false # DDL ?? ??
+    open-in-view: false # View ??? Session(??? ????) ?? ?? - ??? ???? ?? false ?? (default: true)
+    hibernate:
+      ddl-auto: 'create-drop'
+      use-new-id-generator-mappings: false #  Hibernate? id ?? ??? ??? ??
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        enable_lazy_load_no_trans: true # LAZY ??? default? ??
