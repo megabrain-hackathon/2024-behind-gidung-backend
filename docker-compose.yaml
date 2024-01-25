@@ -7,17 +7,17 @@ services:
       dockerfile: Dockerfile
     container_name: gidung-backend
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/gidung?useSSL=false&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-prod:3306/gidung?useSSL=false&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=gidung
     ports:
       - 18080:8080
     depends_on:
-      - mysql
+      - mysql-prod
 
-  mysql:
+  mysql-prod:
     image: mysql:8.0.32
-    container_name: gidung-mysql
+    container_name: gidung-mysql-prod
     platform: linux/amd64
     volumes:
       - db_datas:/var/lib/mysql
@@ -29,5 +29,19 @@ services:
     ports:
       - 13306:3306
 
+  mysql-dev:
+    image: mysql:8.0.32
+    container_name: gidung-mysql-dev
+    platform: linux/amd64
+    volumes:
+      - db_datas_dev:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=gidung
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_PASSWORD=gidung
+      - TZ= Asia/Seoul
+    ports:
+      - 13307:3306
 volumes:
   db_datas:
+  db_datas_dev:
