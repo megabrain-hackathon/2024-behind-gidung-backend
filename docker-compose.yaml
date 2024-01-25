@@ -12,7 +12,7 @@ services:
 
   mysql:
     image: mysql:8.0.32
-    container_name: art-mysql
+    container_name: gidung-mysql
     platform: linux/amd64
     volumes:
       - db_datas:/var/lib/mysql
