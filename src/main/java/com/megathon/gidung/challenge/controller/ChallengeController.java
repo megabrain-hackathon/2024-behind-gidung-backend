@@ -4,6 +4,7 @@ package com.megathon.gidung.challenge.controller;
 import com.megathon.gidung.challenge.dto.ChallengeCreateRequest;
 import com.megathon.gidung.challenge.dto.ChallengeResponse;
 import com.megathon.gidung.challenge.service.ChallengeService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ public class ChallengeController {
 
     private final ChallengeService challengeService;
     @PostMapping
+    @Operation(summary = "챌린지 생성")
     public ResponseEntity createChallenge(
             @RequestBody ChallengeCreateRequest challengeCreateRequest
     ) {
@@ -26,12 +28,14 @@ public class ChallengeController {
     }
 
     @GetMapping
+    @Operation(summary = "챌린지 전체 조회")
     public ResponseEntity getChallenges() {
         List<ChallengeResponse> response = challengeService.getChallenges();
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "챌린지 상세 조회")
     public ResponseEntity getChallenge(
             @PathVariable Long id
     ) {
@@ -40,6 +44,7 @@ public class ChallengeController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "챌린지 수정")
     public ResponseEntity updateChallenge(
             @PathVariable Long id,
             @RequestBody ChallengeCreateRequest challengeCreateRequest
@@ -49,6 +54,7 @@ public class ChallengeController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "챌린지 삭제")
     public ResponseEntity deleteChallenge(
             @PathVariable Long id
     ) {
