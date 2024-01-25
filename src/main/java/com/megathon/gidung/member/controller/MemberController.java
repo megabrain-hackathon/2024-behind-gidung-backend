@@ -1,5 +1,6 @@
 package com.megathon.gidung.member.controller;
 
+import com.megathon.gidung.member.dto.LoginRequest;
 import com.megathon.gidung.member.dto.MemberCreateRequest;
 import com.megathon.gidung.member.dto.MemberResponse;
 import com.megathon.gidung.member.service.MemberService;
@@ -20,9 +21,9 @@ public class MemberController {
     @PostMapping("/login")
     @Operation(summary = "로그인")
     public ResponseEntity login(
-            @RequestBody MemberCreateRequest memberCreateRequest
+            @RequestBody LoginRequest loginRequest
     ) {
-        MemberResponse response = memberService.login(memberCreateRequest);
+        MemberResponse response = memberService.login(loginRequest);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 

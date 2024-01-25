@@ -1,5 +1,6 @@
 package com.megathon.gidung.member.service;
 
+import com.megathon.gidung.member.dto.LoginRequest;
 import com.megathon.gidung.member.dto.MemberCreateRequest;
 import com.megathon.gidung.member.dto.MemberResponse;
 import com.megathon.gidung.member.entity.Member;
@@ -38,8 +39,8 @@ public class MemberService {
         memberRepository.delete(entity);
     }
 
-    public MemberResponse login(MemberCreateRequest memberCreateRequest) {
-        Member entity = memberRepository.findByUsernameAndPassword(memberCreateRequest.getUsername(), memberCreateRequest.getPassword())
+    public MemberResponse login(LoginRequest loginRequest) {
+        Member entity = memberRepository.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword())
                 .orElseThrow(() -> new RuntimeException("아이디나 비밀번호가 일치하지 않거나 존재하지 않는 회원입니다."));
 
         return MemberResponse.from(entity);
