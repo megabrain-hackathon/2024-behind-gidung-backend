@@ -16,6 +16,16 @@ public class MemberController {
 
     private final MemberService memberService;
 
+
+    @PostMapping("/login")
+    @Operation(summary = "로그인")
+    public ResponseEntity login(
+            @RequestBody MemberCreateRequest memberCreateRequest
+    ) {
+        MemberResponse response = memberService.login(memberCreateRequest);
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
+
     @PostMapping
     @Operation(summary = "회원 생성 (회원 가입)")
     public ResponseEntity createMember(
