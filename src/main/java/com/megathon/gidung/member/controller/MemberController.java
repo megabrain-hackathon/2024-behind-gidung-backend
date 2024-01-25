@@ -3,6 +3,7 @@ package com.megathon.gidung.member.controller;
 import com.megathon.gidung.member.dto.MemberCreateRequest;
 import com.megathon.gidung.member.dto.MemberResponse;
 import com.megathon.gidung.member.service.MemberService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping
+    @Operation(summary = "회원 생성 (회원 가입)")
     public ResponseEntity createMember(
             @RequestBody MemberCreateRequest memberCreateRequest
     ) {
@@ -24,6 +26,7 @@ public class MemberController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "회원 단건 조회")
     public ResponseEntity getMember(
             @PathVariable Long id
     ) {
@@ -32,6 +35,7 @@ public class MemberController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "회원 삭제")
     public ResponseEntity deleteMember(
             @PathVariable Long id
     ) {
