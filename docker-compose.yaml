@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-  backend:
-    image: backend:latest
-    ports:
-      - 8080:8080
-    depends_on:
-      - mysql
-    volumes:
-      - log_datas:/logs
+#  backend:
+#    image: backend:latest
+#    ports:
+#      - 8080:8080
+#    depends_on:
+#      - mysql
+#    volumes:
+#      - log_datas:/logs
 
   mysql:
     image: mysql:8.0.32
