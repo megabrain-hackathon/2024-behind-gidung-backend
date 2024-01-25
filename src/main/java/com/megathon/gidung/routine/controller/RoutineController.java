@@ -42,7 +42,7 @@ public class RoutineController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary="루틴")
+    @Operation(summary="루틴 업데이트")
     public ResponseEntity updateRoutine(
             @PathVariable Long id,
             @RequestBody RoutineRequest.Update routineUpdateRequest
@@ -53,7 +53,7 @@ public class RoutineController {
 
     @DeleteMapping("/{id}")
     @Operation(summary="루틴 삭제")
-    public ResponseEntity deleteMember(
+    public ResponseEntity deleteRoutine(
             @PathVariable Long id
     ) {
         routineService.deleteRoutine(id);
