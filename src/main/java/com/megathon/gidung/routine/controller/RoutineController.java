@@ -1,6 +1,6 @@
 package com.megathon.gidung.routine.controller;
 
-import com.megathon.gidung.routine.dto.RoutineCreateRequest;
+import com.megathon.gidung.routine.dto.RoutineRequest;
 import com.megathon.gidung.routine.dto.RoutineResponse;
 import com.megathon.gidung.routine.service.RoutineService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,7 +19,7 @@ public class RoutineController {
     @PostMapping
     @Operation(summary="루틴 생성")
     public ResponseEntity createRoutine(
-            @RequestBody RoutineCreateRequest routineCreateRequest
+            @RequestBody RoutineRequest.Create routineCreateRequest
     ) {
         RoutineResponse response = routineService.createRoutine(routineCreateRequest);
         return new ResponseEntity(response, HttpStatus.CREATED);
@@ -39,6 +39,16 @@ public class RoutineController {
     ) {
         RoutineResponse response = routineService.getRoutine(id);
         return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary="루틴")
+    public ResponseEntity updateRoutine(
+            @PathVariable Long id,
+            @RequestBody RoutineRequest.Update routineUpdateRequest
+    ) {
+        routineService.updateRoutine(id, routineUpdateRequest);
+        return new ResponseEntity(null, HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{id}")

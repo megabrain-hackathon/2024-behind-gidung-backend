@@ -2,7 +2,7 @@ package com.megathon.gidung.routine.entity;
 
 import com.megathon.gidung.challenge.entity.Challenge;
 import com.megathon.gidung.member.entity.Member;
-import com.megathon.gidung.routine.dto.RoutineCreateRequest;
+import com.megathon.gidung.routine.dto.RoutineRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,7 +41,7 @@ public class Routine {
     @Column(name = "updated_time")
     private LocalDateTime updatedTime;
 
-    public static Routine toEntity(RoutineCreateRequest request) {
+    public static Routine toEntity(RoutineRequest.Create request) {
         return Routine.builder()
                 .routineTitle(request.getRoutineTitle())
                 .createdTime(LocalDateTime.now())
@@ -52,4 +52,8 @@ public class Routine {
     public void setMember(Member member) { this.member = member; }
     public void setChallenge(Challenge challenge) { this.challenge = challenge; }
 
+    public void update(RoutineRequest.Update update){
+        this.routineTitle = update.getRoutineTitle();
+        this.updatedTime = LocalDateTime.now();
+    }
 }
