@@ -1,7 +1,7 @@
 package com.megathon.gidung.challenge.controller;
 
 
-import com.megathon.gidung.challenge.dto.ChallengeCreateRequest;
+import com.megathon.gidung.challenge.dto.ChallengeRequest;
 import com.megathon.gidung.challenge.dto.ChallengeResponse;
 import com.megathon.gidung.challenge.service.ChallengeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,7 +21,7 @@ public class ChallengeController {
     @PostMapping
     @Operation(summary = "챌린지 생성")
     public ResponseEntity createChallenge(
-            @RequestBody ChallengeCreateRequest challengeCreateRequest
+            @RequestBody ChallengeRequest.Create challengeCreateRequest
     ) {
         challengeService.createChallenge(challengeCreateRequest);
         return new ResponseEntity(null, HttpStatus.CREATED);
@@ -47,7 +47,7 @@ public class ChallengeController {
     @Operation(summary = "챌린지 수정")
     public ResponseEntity updateChallenge(
             @PathVariable Long id,
-            @RequestBody ChallengeCreateRequest challengeCreateRequest
+            @RequestBody ChallengeRequest.Update challengeCreateRequest
     ) {
         challengeService.updateChallenge(id, challengeCreateRequest);
         return new ResponseEntity(null, HttpStatus.NO_CONTENT);

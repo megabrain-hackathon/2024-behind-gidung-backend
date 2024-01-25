@@ -1,6 +1,6 @@
 package com.megathon.gidung.challenge.service;
 
-import com.megathon.gidung.challenge.dto.ChallengeCreateRequest;
+import com.megathon.gidung.challenge.dto.ChallengeRequest;
 import com.megathon.gidung.challenge.dto.ChallengeResponse;
 import com.megathon.gidung.challenge.entity.Challenge;
 import com.megathon.gidung.challenge.repository.ChallengeRepository;
@@ -19,7 +19,7 @@ public class ChallengeService {
 
     private final MemberRepository memberRepository;
 
-    public void createChallenge(ChallengeCreateRequest challengeCreateRequest) {
+    public void createChallenge(ChallengeRequest.Create challengeCreateRequest) {
         Challenge challenge = Challenge.toEntity(challengeCreateRequest);
 
         Member member = memberRepository.findById(challengeCreateRequest.getMemberId())
@@ -47,7 +47,7 @@ public class ChallengeService {
         challengeRepository.deleteById(id);
     }
 
-    public void updateChallenge(Long id, ChallengeCreateRequest challengeCreateRequest) {
+    public void updateChallenge(Long id, ChallengeRequest.Update challengeCreateRequest) {
         Challenge challenge = challengeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 챌린지입니다."));
 
